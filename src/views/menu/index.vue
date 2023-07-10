@@ -44,7 +44,7 @@ import { ElMessage } from 'element-plus'
 const menuDate = ref<menuDataType[]>([])
 const dialogFormVisible = ref(false)
 const dialogMethod = ref('')
-const nId = ref('')
+const nId = ref()
 //显示模态框
 const showAddEdit = (method: string, id = '') => {
   nId.value = id
@@ -52,7 +52,7 @@ const showAddEdit = (method: string, id = '') => {
   dialogMethod.value = method
 }
 //删除菜单
-const delMenu = (id: string) => {
+const delMenu = (id: number) => {
   delNav(id).then((res: any) => {
     ElMessage({
     message: '删除成功',

@@ -8,7 +8,7 @@ export function addRoles(params:any){
     })
 }
 //删除角色
-export function delRoles(rId:string){
+export function delRoles(rId:number){
     return request<string,string>({
         url:`${urlPre}/delRoles.php`,
         params:{
@@ -17,7 +17,7 @@ export function delRoles(rId:string){
     })
 }
 //根据id获取角色详情
-export function getOneRoles(rId:string){
+export function getOneRoles(rId:number){
     return request({
         url:`${urlPre}/getOneRoles.php`,
         params:{

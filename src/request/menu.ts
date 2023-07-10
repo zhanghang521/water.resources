@@ -21,7 +21,7 @@ export function addNav(params:object){
 }
 
 //删除菜单
-export function delNav(nId:string){
+export function delNav(nId:number){
     return request({
         url:`${urlPre}/delNav.php`,
         method:'GET',
@@ -32,7 +32,7 @@ export function delNav(nId:string){
 }
 
 //根据id获取菜单信息
-export function getOneNav(nId:string){
+export function getOneNav(nId:number){
     return request({
         url:`${urlPre}/getOneNav.php`,
         method:'GET',

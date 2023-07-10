@@ -1,18 +1,19 @@
 <template>
     <div>
-        <el-dialog v-model="dialogFormVisible" :title="dialogMethod == 'add' ? '添加菜单' : '修改菜单'" @close="dialogFormClose">
-            <el-form :model="menu" ref="ruleFormRef" :rules="rules">
-                <el-form-item prop="nName" label="菜单名称" :label-width="formLabelWidth" style="width:60%;margin:20px auto">
-                    <el-input v-model="menu.nName" autocomplete="off" />
+        <el-dialog v-model="dialogFormVisible" :title="dialogMethod == 'add' ? '添加部门' : '修改部门'" @close="dialogFormClose">
+            <el-form :model="dept" ref="ruleFormRef" :rules="rules">
+                <el-form-item prop="dName" label="部门名称" :label-width="formLabelWidth" style="width:60%;margin:20px auto">
+                    <el-input v-model="dept.dName" autocomplete="off" />
                 </el-form-item>
-                <el-form-item prop="nUrl" label="菜单路径" :label-width="formLabelWidth" style="width:60%;margin:20px auto">
-                    <el-input v-model="menu.nUrl" autocomplete="off" />
+                <el-form-item prop="dCount" label="部门人数" :label-width="formLabelWidth" style="width:60%;margin:20px auto">
+                    <el-input v-model.number="dept.dCount" autocomplete="off" />
                 </el-form-item>
-                <el-form-item prop="nLevel" label="菜单级别" :label-width="formLabelWidth" style="width:60%;margin:20px auto">
-                    <el-select v-model="menu.nLevel" placeholder="请选择菜单级别">
-                        <el-option label="1级菜单" value="1" />
-                        <el-option label="2级菜单" value="2" />
-                        <el-option label="3级菜单" value="3" />
+                <el-form-item prop="dAddr" label="部门地址" :label-width="formLabelWidth" style="width:60%;margin:20px auto">
+                    <el-input v-model="dept.dAddr" autocomplete="off" />
+                </el-form-item>
+                <el-form-item prop="uId" label="部门负责人" :label-width="formLabelWidth" style="width:60%;margin:20px auto">
+                    <el-select v-model="dept.uId" placeholder="请选择部门负责人">
+                        <el-option label="admins" value="1" />
                     </el-select>
                 </el-form-item>
             </el-form>
@@ -30,10 +31,11 @@
 
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import {  MenuType,RuleForm } from "@/types/menu"
+import {  deptType,RuleForm } from "@/types/dept"
 import { addNav, getOneNav, updateNav } from '@/request/menu'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
+import { addDept, getOneDept, updateDept } from '@/request/dept'
 //接受参数
 const props = defineProps({
     //添加或修改
@@ -44,7 +46,7 @@ const props = defineProps({
     dialogFormVisible: {
         type: Boolean
     },
-    nId: {
+    dId: {
         type: Number,
         default: ''
     }
@@ -53,27 +55,34 @@ const ruleFormRef = ref<FormInstance>()
 const $emit = defineEmits(['dialogFormClose'])
 const formLabelWidth = '100px'
 const dialogFormVisible = ref(false)
-const menu = reactive<MenuType>({
-    nName: null,
-    nLevel: null,
-    nUrl: null
+const dept = reactive<deptType>({
+    dName:null,
+    dCount:null,
+    dAddr:null,
+    uId:null,
 })
 
 const rules = reactive<FormRules<RuleForm>>({
-    nName: [
-        { required: true, message: '请输入菜单名称', trigger: 'blur' },
+    dName: [
+        { required: true, message: '请输入部门名称', trigger: 'blur' },
     ],
-    nUrl: [
+    dCount: [
         {
             required: true,
-            message: '请输入菜单路径',
+            message: '请输入部门人数',
             trigger: 'blur',
         },
     ],
-    nLevel: [
+    dAddr: [
         {
             required: true,
-            message: '请选择菜单级别',
+            message: '请输入部门地址',
+        },
+    ],
+    uId: [
+        {
+            required: true,
+            message: '请选择部门负责人',
         },
     ]
 })
@@ -88,10 +97,11 @@ const dialogFormClose = () => {
 onMounted(() => {
     dialogFormVisible.value = props.dialogFormVisible
     if (props.dialogMethod == 'edit') {
-        getOneNav(props.nId).then((res: any) => {
-            menu.nName = res.nName
-            menu.nLevel = res.nLevel
-            menu.nUrl = res.nUrl
+        getOneDept(props.dId).then((res: any) => {
+            dept.dName = res.dName
+            dept.dCount = res.dCount
+            dept.dAddr = res.dAddr
+            dept.uId = res.uId
         })
     }
 })
@@ -102,7 +112,7 @@ const AddOrEditConfirm = async (formEl: FormInstance | undefined) => {
         if (valid) {
             if (props.dialogMethod == 'add') {
                 //添加
-                addNav(menu).then((res: any) => {
+                addDept(dept).then((res: any) => {
                     ElMessage({
                         message: '添加成功',
                         type: 'success',
@@ -111,7 +121,7 @@ const AddOrEditConfirm = async (formEl: FormInstance | undefined) => {
                 })
             }else{
                 //修改
-                updateNav({ nId: props.nId, ...menu }).then((res: any) => {
+                updateDept({ dId: props.dId, ...dept }).then((res: any) => {
                     ElMessage({
                         message: '修改成功',
                         type: 'success',

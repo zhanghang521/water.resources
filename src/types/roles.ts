@@ -1,5 +1,5 @@
 export interface rolesDataType {
-    rId: string
+    rId: number
     rName: string
     rPower: string
     ROLE_UPDATE: number

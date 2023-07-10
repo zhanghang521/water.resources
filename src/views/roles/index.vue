@@ -68,7 +68,7 @@ import { getAllNav } from "@/request/menu"
 const rolesDate = ref<rolesDataType[]>([])
 const dialogFormVisible = ref(false)
 const dialogMethod = ref('')
-const rId = ref('')
+const rId = ref()
 //全部菜单名称 key:value  ===> nId:nName
 interface IMenuName {
   [propName: string]: any
@@ -81,7 +81,7 @@ const showAddEdit = (method: string, id = '') => {
   dialogMethod.value = method
 }
 //删除角色
-const romoveRoles = (id: string) => {
+const romoveRoles = (id: number) => {
   delRoles(id).then((res: string) => {
     if (res == '1') {
       ElMessage({

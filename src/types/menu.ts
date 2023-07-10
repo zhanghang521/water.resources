@@ -1,5 +1,5 @@
 export interface menuDataType {
-    nId: string
+    nId: number
     nName: string
     nLevel: string
     nUrl: string

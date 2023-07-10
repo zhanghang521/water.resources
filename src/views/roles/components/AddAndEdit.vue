@@ -45,7 +45,7 @@ const props = defineProps({
         type: Boolean
     },
     rId: {
-        type: String,
+        type: Number,
         default: ''
     }
 })
