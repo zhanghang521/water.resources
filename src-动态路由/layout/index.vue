@@ -4,7 +4,7 @@
             <el-container>
               <el-header class="header"><PageHeader @showMenu="showMenu"></PageHeader></el-header>
               <el-container>
-                <el-aside style="width:auto">  <PageSides :menuList="router.options.routes[2].children" :isCollapse="isCollapse"></PageSides></el-aside>
+                <el-aside style="width:auto">  <PageSides :menuList="store.state.menus" :isCollapse="isCollapse"></PageSides></el-aside>
                 <el-container>
                   <el-main><router-view></router-view></el-main>
                   <el-footer style="padding-top:20px;text-align:center">江西省水利信息系统 &copy; 2023</el-footer>

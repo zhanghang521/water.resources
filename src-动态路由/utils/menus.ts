@@ -1,3 +1,8 @@
+
+import { getAllNav } from '@/request/menu'
+
+
+
 export function mapMenu(menuList: any) {		//menuList 传入后台接口返回的路由列表
   //最终动态添加路由返回数组
   const routerList = []

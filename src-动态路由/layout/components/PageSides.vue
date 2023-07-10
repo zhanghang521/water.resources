@@ -4,10 +4,11 @@
       :default-active="router.currentRoute.value.fullPath" text-color="#fff" :router="true" :collapse="props.isCollapse"
       >
 
-  <!--     <el-menu-item  index="/water/home">
+      <el-menu-item  index="/warter/home">
+        <!-- 单层菜单 -->
         <el-icon><i class="iconfont icon-home"></i></el-icon>
         <template #title>控制台</template>
-      </el-menu-item> -->
+      </el-menu-item>
 
       <template v-for="(item, index) in props.menuList" :key="index">
 
@@ -24,7 +25,7 @@
           </el-sub-menu>
         </template>
 
-        <el-menu-item v-else :index="'/water/' + item.path">
+        <el-menu-item v-else :index="'/warter/' + item.path">
           <!-- 单层菜单 -->
           <el-icon><i class="iconfont" :class="item?.meta?.icon"></i></el-icon>
           <template #title>{{ item?.meta?.title || '' }}</template>
@@ -51,7 +52,7 @@ const router = useRouter()
 const defaultKey = ref<string>('/')
 
 onMounted(()=>{
-
+  console.log(router.currentRoute.value.fullPath);
 })
 </script>
 
