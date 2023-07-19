@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-import store from '@/store'
+import store from '../store';
 const Login= () => import('@/views/home/Login.vue')
 const layout = () => import('@/layout/index.vue')
 const Menu = () => import('@/views/menu/index.vue')
@@ -56,6 +56,7 @@ router.beforeEach((to,from,next)=>{
         })
     }
 }
+
 
 
 next();

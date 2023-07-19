@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-dialog v-model="dialogFormVisible" :title="dialogMethod == 'add' ? '添加菜单' : '修改菜单'" @close="dialogFormClose">
+        <el-dialog v-model="dialogFormVisible" :title="dialogMethod == 'add' ? '添加角色' : '修改角色'" @close="dialogFormClose">
             <el-form :model="rolse" ref="ruleFormRef" :rules="rules">
                 <el-form-item prop="rName" label="角色名称" :label-width="formLabelWidth" style="width:60%;margin:20px auto">
                     <el-input v-model="rolse.rName" autocomplete="off" />

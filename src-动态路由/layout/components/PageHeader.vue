@@ -39,7 +39,7 @@ import { useStore } from "vuex";
 const $emit = defineEmits(['showMenu'])
 
 const logout=()=>{
-    localStorage.removeItem('token')
+    localStorage.removeItem('vuex')
     window.location.reload();
 }
 

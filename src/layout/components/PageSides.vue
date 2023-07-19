@@ -1,14 +1,16 @@
 <template>
   <div>
-    <el-menu active-text-color="#ffd04b" background-color="#545c64" class="el-menu-vertical-demo"
+    <el-menu active-text-color="#ffd04b" background-color="#304156" class="el-menu-vertical-demo"
       :default-active="router.currentRoute.value.fullPath" text-color="#fff" :router="true" :collapse="props.isCollapse"
       >
+   
 
-  <!--     <el-menu-item  index="/water/home">
+      
+      <div class="title"><i class="logo"></i><span class="title-text" v-if="!props.isCollapse">江西省水利信息系统</span></div>
+      <el-menu-item  index="/water/home">
         <el-icon><i class="iconfont icon-home"></i></el-icon>
         <template #title>控制台</template>
-      </el-menu-item> -->
-
+      </el-menu-item>
       <template v-for="(item, index) in props.menuList" :key="index">
 
         <template v-if="item.children">
@@ -58,10 +60,29 @@ onMounted(()=>{
 <style scoped>
 .el-menu {
   border: none;
-  height: calc(100vh - 50px)
+  height: 100vh;
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 220px;
+}
+.title{
+  height: 50px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title .logo{
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: url('../../assets/images/logo.jpg') center center;
+  background-size: 50px;
+}
+.title .title-text{
+  word-wrap:normal;
+  white-space:nowrap;
+  overflow: hidden;
 }
 </style>

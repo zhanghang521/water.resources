@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <div class="breadcrumb">
-      <Breadcrumb><template #menuName> 部门管理 </template></Breadcrumb>
-    </div>
     <div class="table-data">
       <div class="addMenu"><el-button type="primary" plain size="small" @click="showAddEdit('add')">+ 新增</el-button></div>
       <el-table :data="deptDate" style="width: 100%;" :row-style="{ height: '50px' }"
@@ -35,7 +32,6 @@
 </template>
   
 <script lang="ts" setup>
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue"
 import AddAndEdit from "./components/AddAndEdit.vue"
 import { deptDataType } from "@/types/dept"
 import { onMounted, ref } from "vue"

@@ -1,6 +1,15 @@
-html, 
-body, 
-#app { 
-margin: 0; 
-padding: 0;
+html,
+body,
+#app {
+    margin: 0;
+    padding: 0;
+}
+
+html.dark {
+    /* 覆盖element-plus默认深色背景色 */
+    --el-bg-color: #626aef;
+
+    .el-button--primary {
+        --el-button-text-color: #ededed;
+    }
 }

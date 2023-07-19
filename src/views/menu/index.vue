@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <div class="breadcrumb">
-      <Breadcrumb><template #menuName> 菜单管理 </template></Breadcrumb>
-    </div>
     <div class="table-data">
       <div class="addMenu"><el-button type="primary" plain size="small" @click="showAddEdit('add')">+ 新增</el-button></div>
       <el-table :data="menuDate" style="width: 100%;" :row-style="{ height: '50px' }"
@@ -35,7 +32,6 @@
 </template>
   
 <script lang="ts" setup>
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue"
 import AddAndEdit from "./components/AddAndEdit.vue"
 import { menuDataType } from "@/types/menu"
 import { onMounted, ref } from "vue"
@@ -53,6 +49,7 @@ const showAddEdit = (method: string, id = '') => {
 }
 //删除菜单
 const delMenu = (id: number) => {
+  //TODO: 员工中的uPower中是否已经存在此菜单 如果存在是否会一起删除 
   delNav(id).then((res: any) => {
     ElMessage({
     message: '删除成功',

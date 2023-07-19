@@ -32,7 +32,8 @@ import { login } from '@/request/users'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from "vuex";
 import {initMenu} from "@/utils/menus"
-
+//加密模块
+import crypto from "@/utils/crypto";
 const store = useStore()
 onMounted(() => {
 })
@@ -60,13 +61,20 @@ const submit = () => {
     isShow.value = true;
 };
 const success = (msg) => {
-    store.dispatch('login', loginForm).then(res => {
+    //测试加密
+    let enPassword = crypto.encrypt(loginForm.uPwd)
+    console.log(enPassword);
+    //测试解密
+    let dePassword = crypto.decrypt(enPassword)
+    console.log(dePassword);
+   
+    login(loginForm).then(res => {
         if (typeof res == 'object') {
             ElMessage({
                 message:'登录成功',
                 type:'success'
             })
-            
+            store.dispatch('init', res)
             if (!route.query) {
                 router.push({ path: '/' })
             } else {

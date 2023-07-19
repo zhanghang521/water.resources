@@ -7,9 +7,9 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import '@/assets/css/style.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import 'element-plus/theme-chalk/dark/css-vars.css'
+import '@/assets/css/dark.css'
 
-
-store.dispatch('initializationData')
 const app = createApp(App)
 app.use(ElementPlus)
 app.use(store)

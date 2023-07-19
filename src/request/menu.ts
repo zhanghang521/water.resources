@@ -49,3 +49,13 @@ export function updateNav(params:object){
         params
     })
 }
+//根据power字符串获取菜单列表
+export function getPowerNav(str:string){
+    return request({
+        url:`${urlPre}/getPowerNav.php`,
+        method:'GET',
+        params:{
+            str
+        }
+    })
+}
